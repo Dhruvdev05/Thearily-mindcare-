@@ -1,0 +1,10 @@
+<%- include('../partials/header') %>
+
+<div class="chat-lobby text-center mt-5">
+  <h2>Welcome, <%= user.username %> 👋</h2>
+  <p>Choose how you want to chat:</p>
+  <a href="/chat/match" class="btn btn-primary">Find 1-on-1 Chat</a>
+  <a href="/chat/group" class="btn btn-success">Join Group Chat</a>
+</div>
+
+<%- include('../partials/footer') %>

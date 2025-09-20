@@ -1,0 +1,177 @@
+<%- include('../partials/header') %>
+
+<!-- Premium Registration Section -->
+<section class="registration-section">
+  <div class="container">
+    <div class="row justify-content-center align-items-center min-vh-100">
+      <div class="col-lg-5 col-md-7 col-sm-9">
+        
+        <!-- Registration Card -->
+        <div class="registration-card" data-aos="fade-up" data-aos-duration="800">
+          
+          <!-- Card Header -->
+          <div class="registration-header text-center mb-4">
+            <div class="header-icon mb-3">
+              <i data-lucide="user-plus" class="registration-icon"></i>
+            </div>
+            <h1 class="registration-title">Join Thearily</h1>
+            <p class="registration-subtitle">Create your account and start your mental wellness journey</p>
+          </div>
+
+          <!-- Registration Form -->
+          <form action="/register" method="POST" class="registration-form">
+            
+            <!-- Username Field -->
+            <div class="form-group mb-4" data-aos="fade-up" data-aos-delay="100">
+              <label class="form-label premium-label">
+                <i data-lucide="user" class="label-icon"></i>
+                Username
+              </label>
+              <div class="input-wrapper">
+                <input 
+                  type="text" 
+                  name="username" 
+                  class="form-control premium-input" 
+                  placeholder="Enter your username"
+                  required
+                >
+                <div class="input-focus-border"></div>
+              </div>
+            </div>
+
+            <!-- Email Field -->
+            <div class="form-group mb-4" data-aos="fade-up" data-aos-delay="200">
+              <label class="form-label premium-label">
+                <i data-lucide="mail" class="label-icon"></i>
+                Email Address
+              </label>
+              <div class="input-wrapper">
+                <input 
+                  type="email" 
+                  name="email" 
+                  class="form-control premium-input" 
+                  placeholder="Enter your email address"
+                  required
+                >
+                <div class="input-focus-border"></div>
+              </div>
+            </div>
+
+            <!-- Password Field -->
+            <div class="form-group mb-4" data-aos="fade-up" data-aos-delay="300">
+              <label class="form-label premium-label">
+                <i data-lucide="lock" class="label-icon"></i>
+                Password
+              </label>
+              <div class="input-wrapper">
+                <input 
+                  type="password" 
+                  name="password" 
+                  class="form-control premium-input" 
+                  placeholder="Create a strong password"
+                  required
+                >
+                <button type="button" class="password-toggle" onclick="togglePassword(this)">
+                  <i data-lucide="eye" class="toggle-icon"></i>
+                </button>
+                <div class="input-focus-border"></div>
+              </div>
+              <div class="password-strength mt-2">
+                <div class="strength-indicator">
+                  <div class="strength-bar"></div>
+                </div>
+                <small class="strength-text text-muted">Password strength: <span id="strength-level">Enter password</span></small>
+              </div>
+            </div>
+
+            <!-- Role Selection -->
+            <div class="form-group mb-4" data-aos="fade-up" data-aos-delay="400">
+              <label class="form-label premium-label">
+                <i data-lucide="user-check" class="label-icon"></i>
+                I am a
+              </label>
+              <div class="role-selection">
+                <div class="role-option">
+                  <input type="radio" name="role" value="student" id="role-student" class="role-input" checked>
+                  <label for="role-student" class="role-label">
+                    <div class="role-card">
+                      <i data-lucide="graduation-cap" class="role-icon"></i>
+                      <h6 class="role-title">Student</h6>
+                      <p class="role-description">Seeking mental health support and guidance</p>
+                    </div>
+                  </label>
+                </div>
+                <div class="role-option">
+                  <input type="radio" name="role" value="therapist" id="role-therapist" class="role-input">
+                  <label for="role-therapist" class="role-label">
+                    <div class="role-card">
+                      <i data-lucide="heart-handshake" class="role-icon"></i>
+                      <h6 class="role-title">Therapist</h6>
+                      <p class="role-description">Providing professional mental health services</p>
+                    </div>
+                  </label>
+                </div>
+              </div>
+            </div>
+
+            <!-- Terms and Privacy -->
+            <div class="form-group mb-4" data-aos="fade-up" data-aos-delay="500">
+              <div class="form-check premium-checkbox">
+                <input class="form-check-input" type="checkbox" id="terms" required>
+                <label class="form-check-label" for="terms">
+                  I agree to the <a href="/terms" class="premium-link">Terms of Service</a> and <a href="/privacy" class="premium-link">Privacy Policy</a>
+                </label>
+              </div>
+            </div>
+
+            <!-- Submit Button -->
+            <div class="form-group mb-4" data-aos="fade-up" data-aos-delay="600">
+              <button type="submit" class="btn btn-premium w-100 registration-btn">
+                <span class="btn-text">Create Account</span>
+                <i data-lucide="arrow-right" class="btn-icon"></i>
+                <div class="btn-shimmer"></div>
+              </button>
+            </div>
+
+            <!-- Login Link -->
+            <div class="text-center" data-aos="fade-up" data-aos-delay="700">
+              <p class="login-prompt">
+                Already have an account? 
+                <a href="/login" class="premium-link">Sign in here</a>
+              </p>
+            </div>
+
+          </form>
+
+          <!-- Trust Indicators -->
+          <div class="trust-badges" data-aos="fade-up" data-aos-delay="800">
+            <div class="trust-item">
+              <i data-lucide="shield-check" class="trust-icon"></i>
+              <span>Secure & Private</span>
+            </div>
+            <div class="trust-item">
+              <i data-lucide="clock" class="trust-icon"></i>
+              <span>24/7 Support</span>
+            </div>
+            <div class="trust-item">
+              <i data-lucide="users" class="trust-icon"></i>
+              <span>10K+ Students</span>
+            </div>
+          </div>
+
+        </div>
+
+        <!-- Background Decorations -->
+        <div class="registration-bg-elements">
+          <div class="bg-circle circle-1"></div>
+          <div class="bg-circle circle-2"></div>
+          <div class="bg-circle circle-3"></div>
+        </div>
+
+      </div>
+    </div>
+  </div>
+</section>
+
+<%- include('../partials/footer') %>
+

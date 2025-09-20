@@ -1,0 +1,24 @@
+<%- include('../partials/header') %>
+
+<div class="chat-room">
+  <h3>Room: <%= room._id %></h3>
+  <div id="messages" class="chat-box">
+    <% messages.forEach(msg => { %>
+      <div class="message">
+        <strong style="color:<%= msg.senderColor %>">
+          <%= msg.senderName %>
+        </strong>: <%= msg.text %>
+      </div>
+    <% }) %>
+  </div>
+
+  <form id="chatForm">
+    <input type="text" id="messageInput" placeholder="Type your message..." autocomplete="off" />
+    <button type="submit">Send</button>
+  </form>
+</div>
+
+<script src="/socket.io/socket.io.js"></script>
+<script src="/public/js/chat.js"></script>
+
+<%- include('../partials/footer') %>

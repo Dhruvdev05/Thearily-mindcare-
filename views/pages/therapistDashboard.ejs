@@ -1,0 +1,212 @@
+<%- include('../partials/header') %>
+
+<section class="dashboard-section">
+  <div class="container">
+    <!-- Welcome Header -->
+    <div class="dashboard-header" data-aos="fade-down">
+      <div class="welcome-card therapist-welcome">
+        <div class="welcome-content">
+          <div class="welcome-avatar therapist-avatar">
+            <span class="avatar-initial"><%= user.username.charAt(0).toUpperCase() %></span>
+          </div>
+          <div class="welcome-text">
+            <h1 class="welcome-title">Hello, Dr. <%= user.username %> 👩‍⚕️</h1>
+            <p class="welcome-subtitle">Manage your students, upcoming sessions, and resources here</p>
+          </div>
+        </div>
+        <div class="welcome-stats">
+          <div class="stat-item">
+            <div class="stat-number">24</div>
+            <div class="stat-label">Active Students</div>
+          </div>
+          <div class="stat-divider"></div>
+          <div class="stat-item">
+            <div class="stat-number">98%</div>
+            <div class="stat-label">Success Rate</div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="row g-4">
+      <!-- Students Card -->
+      <div class="col-lg-6" data-aos="fade-up" data-aos-delay="100">
+        <div class="dashboard-card students-card">
+          <div class="card-header">
+            <div class="card-icon students-icon">
+              <i data-lucide="users"></i>
+            </div>
+            <div class="card-title-group">
+              <h4 class="card-title">Your Students</h4>
+              <p class="card-subtitle">Recent active patients</p>
+            </div>
+          </div>
+          
+          <div class="card-content">
+            <div class="student-list">
+              <div class="student-item">
+                <div class="student-avatar">
+                  <img src="https://i.pravatar.cc/40?img=3" alt="Dhruv">
+                </div>
+                <div class="student-info">
+                  <h6 class="student-name">Dhruv Sharma</h6>
+                  <p class="student-status">
+                    <span class="status-dot active"></span>
+                    Last session: 2 days ago
+                  </p>
+                </div>
+                <button class="btn btn-outline-success btn-sm student-action">
+                  <i data-lucide="message-circle"></i>
+                </button>
+              </div>
+              
+              <div class="student-item">
+                <div class="student-avatar">
+                  <img src="https://i.pravatar.cc/40?img=4" alt="Ananya">
+                </div>
+                <div class="student-info">
+                  <h6 class="student-name">Ananya Gupta</h6>
+                  <p class="student-status">
+                    <span class="status-dot active"></span>
+                    Last session: Today
+                  </p>
+                </div>
+                <button class="btn btn-outline-success btn-sm student-action">
+                  <i data-lucide="message-circle"></i>
+                </button>
+              </div>
+              
+              <div class="student-item">
+                <div class="student-avatar">
+                  <img src="https://i.pravatar.cc/40?img=5" alt="Rohit">
+                </div>
+                <div class="student-info">
+                  <h6 class="student-name">Rohit Kumar</h6>
+                  <p class="student-status">
+                    <span class="status-dot inactive"></span>
+                    Last session: 1 week ago
+                  </p>
+                </div>
+                <button class="btn btn-outline-success btn-sm student-action">
+                  <i data-lucide="message-circle"></i>
+                </button>
+              </div>
+            </div>
+          </div>
+          
+          <div class="card-footer">
+            <a href="/therapist/manage-sessions" class="btn btn-success w-100">
+              <i data-lucide="settings" class="me-2"></i>
+              Manage Students
+            </a>
+          </div>
+        </div>
+      </div>
+
+      <!-- Schedule Card -->
+      <div class="col-lg-6" data-aos="fade-up" data-aos-delay="200">
+        <div class="dashboard-card schedule-card">
+          <div class="card-header">
+            <div class="card-icon schedule-icon">
+              <i data-lucide="calendar"></i>
+            </div>
+            <div class="card-title-group">
+              <h4 class="card-title">Your Schedule</h4>
+              <p class="card-subtitle">Upcoming appointments</p>
+            </div>
+          </div>
+          
+          <div class="card-content">
+            <div class="schedule-list">
+              <div class="schedule-item">
+                <div class="schedule-time">
+                  <div class="time-display">5:00 PM</div>
+                  <div class="date-display">Tomorrow</div>
+                </div>
+                <div class="schedule-details">
+                  <h6 class="session-patient">Session with Dhruv</h6>
+                  <p class="session-type">Individual Therapy</p>
+                </div>
+                <div class="schedule-actions">
+                  <button class="btn btn-outline-success btn-sm">
+                    <i data-lucide="video"></i>
+                  </button>
+                </div>
+              </div>
+              
+              <div class="schedule-item">
+                <div class="schedule-time">
+                  <div class="time-display">4:00 PM</div>
+                  <div class="date-display">Monday</div>
+                </div>
+                <div class="schedule-details">
+                  <h6 class="session-patient">Session with Ananya</h6>
+                  <p class="session-type">Follow-up Session</p>
+                </div>
+                <div class="schedule-actions">
+                  <button class="btn btn-outline-success btn-sm">
+                    <i data-lucide="video"></i>
+                  </button>
+                </div>
+              </div>
+            </div>
+          </div>
+          
+          <div class="card-footer">
+            <a href="/therapist/availability" class="btn btn-success w-100">
+              <i data-lucide="plus" class="me-2"></i>
+              Add Availability
+            </a>
+          </div>
+        </div>
+      </div>
+
+      <!-- Therapist Tools -->
+      <div class="col-12" data-aos="fade-up" data-aos-delay="300">
+        <div class="dashboard-card tools-card">
+          <div class="card-header">
+            <div class="card-icon tools-icon">
+              <i data-lucide="briefcase"></i>
+            </div>
+            <div class="card-title-group">
+              <h4 class="card-title">Professional Tools</h4>
+              <p class="card-subtitle">Resources and management tools</p>
+            </div>
+          </div>
+          
+          <div class="card-content">
+            <div class="tools-grid">
+              <a href="/therapist/notes" class="tool-item">
+                <div class="tool-icon">
+                  <i data-lucide="clipboard"></i>
+                </div>
+                <span class="tool-label">Session Notes</span>
+              </a>
+              <a href="/therapist/assessments" class="tool-item">
+                <div class="tool-icon">
+                  <i data-lucide="file-check"></i>
+                </div>
+                <span class="tool-label">Assessments</span>
+              </a>
+              <a href="/therapist/resources" class="tool-item">
+                <div class="tool-icon">
+                  <i data-lucide="library"></i>
+                </div>
+                <span class="tool-label">Resource Library</span>
+              </a>
+              <a href="/therapist/analytics" class="tool-item">
+                <div class="tool-icon">
+                  <i data-lucide="bar-chart-3"></i>
+                </div>
+                <span class="tool-label">Analytics</span>
+              </a>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<%- include('../partials/footer') %>
+

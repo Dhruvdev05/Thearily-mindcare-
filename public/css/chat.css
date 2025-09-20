@@ -1,0 +1,98 @@
+/* === Chat Room Styles === */
+body {
+  font-family: 'Poppins', sans-serif;
+  background: linear-gradient(135deg, #dbeafe, #f5f3ff);
+  color: #333;
+  margin: 0;
+  padding: 0;
+}
+
+/* Chat container */
+.chat-room {
+  max-width: 800px;
+  margin: 40px auto;
+  background: #fff;
+  border-radius: 15px;
+  box-shadow: 0 8px 20px rgba(0, 0, 0, 0.08);
+  overflow: hidden;
+  display: flex;
+  flex-direction: column;
+  height: 80vh;
+}
+
+/* Header */
+.chat-room h3 {
+  margin: 0;
+  padding: 15px 20px;
+  background: #6C63FF;
+  color: #fff;
+  font-size: 1.2rem;
+  letter-spacing: 0.5px;
+  text-align: center;
+}
+
+/* Messages box */
+.chat-box {
+  flex: 1;
+  padding: 20px;
+  overflow-y: auto;
+  background: #f9fafb;
+}
+
+.message {
+  margin-bottom: 12px;
+  padding: 10px 14px;
+  border-radius: 12px;
+  background: #e0e7ff;
+  display: inline-block;
+  max-width: 70%;
+  word-wrap: break-word;
+  animation: fadeIn 0.3s ease-in-out;
+}
+
+/* Differentiate sender vs receiver */
+.message.self {
+  background: #c7d2fe;
+  align-self: flex-end;
+}
+
+/* Form at bottom */
+#chatForm {
+  display: flex;
+  border-top: 1px solid #ddd;
+}
+
+#messageInput {
+  flex: 1;
+  padding: 12px 15px;
+  border: none;
+  outline: none;
+  font-size: 1rem;
+}
+
+#chatForm button {
+  padding: 0 20px;
+  background: #6C63FF;
+  border: none;
+  color: #fff;
+  cursor: pointer;
+  transition: 0.3s;
+}
+
+#chatForm button:hover {
+  background: #574bdb;
+}
+
+/* Smooth scroll & animations */
+.chat-box::-webkit-scrollbar {
+  width: 6px;
+}
+.chat-box::-webkit-scrollbar-thumb {
+  background: #cbd5e1;
+  border-radius: 3px;
+}
+
+@keyframes fadeIn {
+  from { opacity: 0; transform: translateY(5px); }
+  to { opacity: 1; transform: translateY(0); }
+}

@@ -1,0 +1,188 @@
+<%- include('../partials/header') %>
+
+<section class="dashboard-section">
+  <div class="container">
+    <!-- Welcome Header -->
+    <div class="dashboard-header" data-aos="fade-down">
+      <div class="welcome-card">
+        <div class="welcome-content">
+          <div class="welcome-avatar student-avatar">
+            <span class="avatar-initial"><%= user.username.charAt(0).toUpperCase() %></span>
+          </div>
+          <div class="welcome-text">
+            <h1 class="welcome-title">Welcome back, <%= user.username %> 🌿</h1>
+            <p class="welcome-subtitle">Your safe space to track progress and connect with therapists</p>
+          </div>
+        </div>
+        <div class="welcome-stats">
+          <div class="stat-item">
+            <div class="stat-number">8</div>
+            <div class="stat-label">Sessions Completed</div>
+          </div>
+          <div class="stat-divider"></div>
+          <div class="stat-item">
+            <div class="stat-number">92%</div>
+            <div class="stat-label">Wellness Score</div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="row g-4">
+      <!-- Upcoming Sessions Card -->
+      <div class="col-lg-6" data-aos="fade-up" data-aos-delay="100">
+        <div class="dashboard-card sessions-card">
+          <div class="card-header">
+            <div class="card-icon sessions-icon">
+              <i data-lucide="calendar-check"></i>
+            </div>
+            <div class="card-title-group">
+              <h4 class="card-title">Upcoming Sessions</h4>
+              <p class="card-subtitle">Your scheduled appointments</p>
+            </div>
+          </div>
+          
+          <div class="card-content">
+            <div class="session-list">
+              <div class="session-item">
+                <div class="session-avatar">
+                  <img src="https://i.pravatar.cc/40?img=1" alt="Dr. Meera">
+                </div>
+                <div class="session-info">
+                  <h6 class="session-therapist">Dr. Meera Sharma</h6>
+                  <p class="session-time">
+                    <i data-lucide="clock" class="time-icon"></i>
+                    Tomorrow, 5:00 PM
+                  </p>
+                </div>
+                <button class="btn btn-outline-primary btn-sm session-action">
+                  <i data-lucide="video"></i>
+                </button>
+              </div>
+              
+              <div class="session-item">
+                <div class="session-avatar">
+                  <img src="https://i.pravatar.cc/40?img=2" alt="Dr. Rahul">
+                </div>
+                <div class="session-info">
+                  <h6 class="session-therapist">Dr. Rahul Kumar</h6>
+                  <p class="session-time">
+                    <i data-lucide="clock" class="time-icon"></i>
+                    Monday, 4:00 PM
+                  </p>
+                </div>
+                <button class="btn btn-outline-primary btn-sm session-action">
+                  <i data-lucide="video"></i>
+                </button>
+              </div>
+            </div>
+          </div>
+          
+          <div class="card-footer">
+            <a href="/student/book-session" class="btn btn-premium w-100">
+              <i data-lucide="plus" class="me-2"></i>
+              Book New Session
+            </a>
+          </div>
+        </div>
+      </div>
+
+      <!-- Mood Tracker Card -->
+      <div class="col-lg-6" data-aos="fade-up" data-aos-delay="200">
+        <div class="dashboard-card mood-card">
+          <div class="card-header">
+            <div class="card-icon mood-icon">
+              <i data-lucide="heart"></i>
+            </div>
+            <div class="card-title-group">
+              <h4 class="card-title">Mood Tracker</h4>
+              <p class="card-subtitle">How are you feeling today?</p>
+            </div>
+          </div>
+          
+          <div class="card-content">
+            <div class="mood-selector">
+              <div class="mood-option" data-mood="great">
+                <div class="mood-emoji">😊</div>
+                <span class="mood-label">Great</span>
+              </div>
+              <div class="mood-option" data-mood="good">
+                <div class="mood-emoji">🙂</div>
+                <span class="mood-label">Good</span>
+              </div>
+              <div class="mood-option" data-mood="okay">
+                <div class="mood-emoji">😐</div>
+                <span class="mood-label">Okay</span>
+              </div>
+              <div class="mood-option" data-mood="low">
+                <div class="mood-emoji">😔</div>
+                <span class="mood-label">Low</span>
+              </div>
+              <div class="mood-option" data-mood="struggling">
+                <div class="mood-emoji">😢</div>
+                <span class="mood-label">Struggling</span>
+              </div>
+            </div>
+            
+            <div class="mood-insights">
+              <div class="insight-item">
+                <span class="insight-label">This Week</span>
+                <div class="insight-bar">
+                  <div class="bar-fill" style="width: 78%"></div>
+                </div>
+                <span class="insight-value">78%</span>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Quick Actions -->
+      <div class="col-12" data-aos="fade-up" data-aos-delay="300">
+        <div class="dashboard-card quick-actions-card">
+          <div class="card-header">
+            <div class="card-icon actions-icon">
+              <i data-lucide="zap"></i>
+            </div>
+            <div class="card-title-group">
+              <h4 class="card-title">Quick Actions</h4>
+              <p class="card-subtitle">Common tasks and resources</p>
+            </div>
+          </div>
+          
+          <div class="card-content">
+            <div class="quick-actions-grid">
+              <a href="/resources" class="quick-action-item">
+                <div class="action-icon">
+                  <i data-lucide="book-open"></i>
+                </div>
+                <span class="action-label">Self-Help Resources</span>
+              </a>
+              <a href="/community" class="quick-action-item">
+                <div class="action-icon">
+                  <i data-lucide="users"></i>
+                </div>
+                <span class="action-label">Join Community</span>
+              </a>
+              <a href="/crisis-support" class="quick-action-item crisis">
+                <div class="action-icon">
+                  <i data-lucide="phone-call"></i>
+                </div>
+                <span class="action-label">Crisis Support</span>
+              </a>
+              <a href="/progress" class="quick-action-item">
+                <div class="action-icon">
+                  <i data-lucide="trending-up"></i>
+                </div>
+                <span class="action-label">View Progress</span>
+              </a>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<%- include('../partials/footer') %>
+
