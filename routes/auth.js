@@ -7,7 +7,8 @@ router.get('/register', (req,res) => {
     res.render("pages/register")
 });
 
-router.post('/register', async (req, res) => {
+// POST: Register
+router.post('/register', async (req, res, next) => {
     try {
         const { username, email, password, role } = req.body;
         const newUser = new User({ username, email, role });
@@ -16,8 +17,17 @@ router.post('/register', async (req, res) => {
         // Auto-login after register
         req.login(registeredUser, (err) => {
             if (err) return next(err);
-            if (role === 'student') return res.redirect('/student/dashboard');
-            if (role === 'therapist') return res.redirect('/therapist/dashboard');
+
+            if (role === 'student') {
+                // 👉 First go to problem form
+                return res.redirect('/student/problem-form');
+            }
+
+            if (role === 'therapist') {
+                return res.redirect('/therapist/dashboard');
+            }
+
+            res.redirect('/');
         });
     } catch (err) {
         req.flash('error', err.message);

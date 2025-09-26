@@ -1,6 +1,7 @@
 const express = require('express');
 const mongoose = require('mongoose');
-const session = require('express-session');
+const session = require('express-session')
+const MongoStore = require('connect-mongo');;
 const flash = require('connect-flash');
 const passport = require('passport');
 const LocalStrategy = require('passport-local');
@@ -25,12 +26,29 @@ app.use(express.static('public'));
 app.set('view engine', 'ejs');
 app.set('views', './views');
 
+
+const store = MongoStore.create({
+    mongoUrl: process.env.MONGO_URL,
+    crypto: {
+        secret: process.env.SESSION_SECRET,
+    },
+    touchAfter: 24 * 60
+})
+
+store.on("error", () => {
+    console.log("error in mongo session store")
+})
+
+
 // Session + flash
 app.use(session({
+    store,
     secret: process.env.SESSION_SECRET || 'supersecret',
     resave: false,
     saveUninitialized: false
 }));
+
+
 app.use(flash());
 
 // Passport
@@ -53,11 +71,14 @@ const authRoutes = require('./routes/auth');
 const dashboardRoutes = require('./routes/dashboard');
 const sessionRoutes = require("./routes/sessionRoutes");
 const chatRoutes = require("./routes/chat");   // (new for chat)
+const problemRoutes = require('./routes/problemRoutes');
 
 app.use('/', authRoutes);
 app.use('/', dashboardRoutes);
 app.use('/', sessionRoutes);
 app.use('/chat', chatRoutes);
+app.use('/', problemRoutes);
+
 
 // Home route
 app.get('/', (req, res) => {

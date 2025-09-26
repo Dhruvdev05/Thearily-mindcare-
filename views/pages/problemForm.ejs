@@ -1,0 +1,284 @@
+<%- include('../partials/header') %>
+
+<div class="problem-form-container">
+    <div class="container py-5">
+        <div class="row justify-content-center">
+            <div class="col-lg-8 col-md-10">
+                <!-- Form Header -->
+                <div class="form-header text-center mb-5">
+                    <div class="form-icon-wrapper mb-3">
+                        <div class="form-icon">
+                            <i class="fas fa-heart"></i>
+                        </div>
+                    </div>
+                    <h2 class="form-title mb-3">Tell Us About Your Concerns</h2>
+                    <p class="form-subtitle">
+                        Your information helps us understand how to best support you. 
+                        Everything shared here is completely confidential.
+                    </p>
+                </div>
+
+                <!-- Main Form Card -->
+                <form action="/student/problem-form" method="POST" class="premium-problem-form">
+                    <div class="form-card">
+                        <!-- Issues Selection -->
+                        <div class="form-section mb-4">
+                            <div class="section-header mb-4">
+                                <div class="section-icon">
+                                    <i class="fas fa-clipboard-list"></i>
+                                </div>
+                                <div class="section-content">
+                                    <h4 class="section-title">Main Areas of Concern</h4>
+                                    <p class="section-desc">Select up to 3 issues that you'd like support with</p>
+                                </div>
+                            </div>
+
+                            <div class="issues-grid">
+                                <label class="issue-card">
+                                    <input type="checkbox" name="issues" value="Anxiety" class="issue-checkbox">
+                                    <div class="issue-content">
+                                        <div class="issue-icon anxiety">
+                                            <i class="fas fa-exclamation-triangle"></i>
+                                        </div>
+                                        <div class="issue-info">
+                                            <h6 class="issue-title">Anxiety</h6>
+                                            <small class="issue-desc">Worry, nervousness, panic attacks</small>
+                                        </div>
+                                        <div class="issue-check">
+                                            <i class="fas fa-check"></i>
+                                        </div>
+                                    </div>
+                                </label>
+
+                                <label class="issue-card">
+                                    <input type="checkbox" name="issues" value="Stress" class="issue-checkbox">
+                                    <div class="issue-content">
+                                        <div class="issue-icon stress">
+                                            <i class="fas fa-brain"></i>
+                                        </div>
+                                        <div class="issue-info">
+                                            <h6 class="issue-title">Stress</h6>
+                                            <small class="issue-desc">Feeling overwhelmed, pressure</small>
+                                        </div>
+                                        <div class="issue-check">
+                                            <i class="fas fa-check"></i>
+                                        </div>
+                                    </div>
+                                </label>
+
+                                <label class="issue-card">
+                                    <input type="checkbox" name="issues" value="Relationships" class="issue-checkbox">
+                                    <div class="issue-content">
+                                        <div class="issue-icon relationships">
+                                            <i class="fas fa-users"></i>
+                                        </div>
+                                        <div class="issue-info">
+                                            <h6 class="issue-title">Relationships</h6>
+                                            <small class="issue-desc">Family, friends, romantic</small>
+                                        </div>
+                                        <div class="issue-check">
+                                            <i class="fas fa-check"></i>
+                                        </div>
+                                    </div>
+                                </label>
+
+                                <label class="issue-card">
+                                    <input type="checkbox" name="issues" value="Academic Pressure" class="issue-checkbox">
+                                    <div class="issue-content">
+                                        <div class="issue-icon academic">
+                                            <i class="fas fa-graduation-cap"></i>
+                                        </div>
+                                        <div class="issue-info">
+                                            <h6 class="issue-title">Academic Pressure</h6>
+                                            <small class="issue-desc">Exams, grades, performance</small>
+                                        </div>
+                                        <div class="issue-check">
+                                            <i class="fas fa-check"></i>
+                                        </div>
+                                    </div>
+                                </label>
+
+                                <label class="issue-card">
+                                    <input type="checkbox" name="issues" value="Career" class="issue-checkbox">
+                                    <div class="issue-content">
+                                        <div class="issue-icon career">
+                                            <i class="fas fa-briefcase"></i>
+                                        </div>
+                                        <div class="issue-info">
+                                            <h6 class="issue-title">Career Concerns</h6>
+                                            <small class="issue-desc">Future, job uncertainty</small>
+                                        </div>
+                                        <div class="issue-check">
+                                            <i class="fas fa-check"></i>
+                                        </div>
+                                    </div>
+                                </label>
+
+                                <label class="issue-card">
+                                    <input type="checkbox" name="issues" value="Depression" class="issue-checkbox">
+                                    <div class="issue-content">
+                                        <div class="issue-icon depression">
+                                            <i class="fas fa-cloud-rain"></i>
+                                        </div>
+                                        <div class="issue-info">
+                                            <h6 class="issue-title">Low Mood</h6>
+                                            <small class="issue-desc">Sadness, lack of motivation</small>
+                                        </div>
+                                        <div class="issue-check">
+                                            <i class="fas fa-check"></i>
+                                        </div>
+                                    </div>
+                                </label>
+                            </div>
+
+                            <div class="selection-counter mt-3">
+                                <small class="text-muted">
+                                    <i class="fas fa-info-circle me-1"></i>
+                                    <span id="selectionCount">0</span>/3 issues selected
+                                </small>
+                            </div>
+                        </div>
+
+                        <!-- Description Section -->
+                        <div class="form-section mb-4">
+                            <div class="section-header mb-4">
+                                <div class="section-icon">
+                                    <i class="fas fa-comment-dots"></i>
+                                </div>
+                                <div class="section-content">
+                                    <h4 class="section-title">Tell Us More</h4>
+                                    <p class="section-desc">Share what's been on your mind recently (optional)</p>
+                                </div>
+                            </div>
+
+                            <div class="textarea-wrapper">
+                                <textarea name="description" 
+                                          class="form-control premium-textarea" 
+                                          rows="5"
+                                          placeholder="What's been concerning you lately? How has this been affecting your daily life? Any specific situations or triggers?">
+                                </textarea>
+                                <div class="textarea-counter">
+                                    <small class="text-muted">
+                                        <span id="charCount">0</span>/500 characters
+                                    </small>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- Privacy Notice -->
+                        <div class="privacy-notice mb-4">
+                            <div class="privacy-icon">
+                                <i class="fas fa-shield-alt"></i>
+                            </div>
+                            <div class="privacy-content">
+                                <h6 class="privacy-title">Your Privacy is Protected</h6>
+                                <p class="privacy-text">
+                                    This information is encrypted and only shared with qualified mental health professionals 
+                                    to provide you with appropriate support.
+                                </p>
+                            </div>
+                        </div>
+
+                        <!-- Submit Button -->
+                        <div class="form-actions">
+                            <button type="submit" class="btn premium-submit-btn w-100">
+                                <span class="btn-text">Continue to Support Options</span>
+                                <div class="btn-loader">
+                                    <div class="spinner-border spinner-border-sm" role="status"></div>
+                                </div>
+                                <i class="fas fa-arrow-right btn-icon"></i>
+                            </button>
+                        </div>
+                    </div>
+                </form>
+
+                <!-- Additional Support Notice -->
+                <div class="support-notice mt-4">
+                    <div class="support-content">
+                        <div class="support-icon">
+                            <i class="fas fa-phone-alt"></i>
+                        </div>
+                        <div class="support-text">
+                            <strong>Need immediate help?</strong>
+                            <span>Crisis support available 24/7 at 139 or 1800-599-0019</span>
+                        </div>
+                        <button class="btn btn-sm crisis-help-btn" onclick="showCrisisHelp()">
+                            Get Help Now
+                        </button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<script>
+// Issue selection logic
+document.addEventListener('DOMContentLoaded', function() {
+    const checkboxes = document.querySelectorAll('.issue-checkbox');
+    const selectionCount = document.getElementById('selectionCount');
+    const maxSelections = 3;
+    
+    function updateSelectionCount() {
+        const checked = document.querySelectorAll('.issue-checkbox:checked').length;
+        selectionCount.textContent = checked;
+        
+        // Disable unchecked boxes if max reached
+        if (checked >= maxSelections) {
+            checkboxes.forEach(checkbox => {
+                if (!checkbox.checked) {
+                    checkbox.disabled = true;
+                    checkbox.closest('.issue-card').classList.add('disabled');
+                }
+            });
+        } else {
+            checkboxes.forEach(checkbox => {
+                checkbox.disabled = false;
+                checkbox.closest('.issue-card').classList.remove('disabled');
+            });
+        }
+    }
+    
+    checkboxes.forEach(checkbox => {
+        checkbox.addEventListener('change', updateSelectionCount);
+    });
+    
+    // Character counter
+    const textarea = document.querySelector('.premium-textarea');
+    const charCount = document.getElementById('charCount');
+    const maxChars = 500;
+    
+    textarea.addEventListener('input', function() {
+        const length = this.value.length;
+        charCount.textContent = length;
+        
+        if (length > maxChars) {
+            this.value = this.value.substring(0, maxChars);
+            charCount.textContent = maxChars;
+        }
+        
+        // Color coding
+        if (length > maxChars * 0.9) {
+            charCount.style.color = '#e17055';
+        } else if (length > maxChars * 0.7) {
+            charCount.style.color = '#fdcb6e';
+        } else {
+            charCount.style.color = '#6c757d';
+        }
+    });
+    
+    // Form submission
+    document.querySelector('.premium-problem-form').addEventListener('submit', function(e) {
+        const submitBtn = document.querySelector('.premium-submit-btn');
+        const btnText = submitBtn.querySelector('.btn-text');
+        const btnLoader = submitBtn.querySelector('.btn-loader');
+        
+        btnText.style.opacity = '0';
+        btnLoader.style.opacity = '1';
+        submitBtn.disabled = true;
+    });
+});
+</script>
+
+<%- include('../partials/footer') %>
+

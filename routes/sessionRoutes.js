@@ -22,10 +22,11 @@ router.get('/student/book-session', isStudent, async (req, res) => {
 // POST: Book session
 router.post('/student/book-session', isStudent, async (req, res) => {
     try {
-        const { date, time, notes } = req.body;
+        const { therapist, date, time, notes } = req.body;
 
         const newSession = new Session({
             student: req.user._id,
+            therapist, 
             date,
             time,
             notes
@@ -47,6 +48,7 @@ router.get('/therapist/manage-sessions', isTherapist, async (req, res) => {
     try {
         const sessions = await Session.find()
             .populate('student', 'username email')
+            .populate('therapist', 'username email')
             .sort({ date: 1 });
 
         res.render('pages/manageSession.ejs', { user: req.user, sessions });

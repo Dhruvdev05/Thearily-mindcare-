@@ -17,8 +17,22 @@
     <% if (sessions.length > 0) { %>
         <% sessions.forEach(session => { %>
             <tr>
-                <td><%= session.student.username %> (<%= session.student.email %>)</td>
-                <td><%= session.date.toDateString() %></td>
+                <td>
+    <% if (session.student) { %>
+        <%= session.student.username %> (<%= session.student.email %>)
+    <% } else { %>
+        Unknown Student
+    <% } %>
+</td>
+
+                <td>
+  <% if (session.date) { %>
+    <%= new Date(session.date).toDateString() %>
+  <% } else { %>
+    Not Provided
+  <% } %>
+</td>
+
                 <td><%= session.time %></td>
                 <td><%= session.notes || '—' %></td>
                 <td>
