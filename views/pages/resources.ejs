@@ -1,0 +1,141 @@
+<%- include('../partials/header') %>
+
+<div class="container py-5">
+    <h2 class="text-center mb-4">Wellness Resources</h2>
+
+    <!-- Quick Breathing Exercise -->
+    <div class="card shadow-lg p-5 mb-5 text-center">
+        <h4 class="mb-3">🌬️ Quick Breathing Exercise</h4>
+        <p class="text-muted">Follow this short guided exercise to relax and refocus.</p>
+
+        <div class="breathing-box my-4">
+            <h2 id="breath-text" class="mb-3 fw-bold">Ready?</h2>
+            <div class="circle mx-auto mb-3 shadow" id="circle"></div>
+            <p id="cycle-counter" class="text-muted">Cycle: 0 / 3</p>
+            <button class="btn btn-gradient px-4 py-2 mt-3" id="start-btn">Start Exercise</button>
+        </div>
+    </div>
+
+    <!-- Example YouTube videos -->
+    <div class="row">
+        <div class="col-md-6 mb-4">
+            <div class="card shadow-sm border-0">
+                <div class="card-body">
+                    <h5 class="card-title">🧘 Mindfulness Meditation</h5>
+                    <div class="ratio ratio-16x9">
+                        <iframe src="https://www.youtube.com/embed/inpok4MKVLM" 
+                                title="Mindfulness Meditation" 
+                                allowfullscreen></iframe>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="col-md-6 mb-4">
+            <div class="card shadow-sm border-0">
+                <div class="card-body">
+                    <h5 class="card-title">☀️ Stress Relief Yoga</h5>
+                    <div class="ratio ratio-16x9">
+                        <iframe src="https://www.youtube.com/embed/v7AYKMP6rOE" 
+                                title="Yoga for Stress Relief" 
+                                allowfullscreen></iframe>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<style>
+    /* Gradient Button */
+    .btn-gradient {
+        background: linear-gradient(45deg, #6c63ff, #4cafef);
+        border: none;
+        color: #fff;
+        font-weight: 600;
+        border-radius: 30px;
+        transition: 0.3s;
+    }
+    .btn-gradient:hover {
+        background: linear-gradient(45deg, #4cafef, #6c63ff);
+        transform: scale(1.05);
+    }
+
+    /* Breathing Circle */
+    .circle {
+        width: 160px;
+        height: 160px;
+        background: linear-gradient(135deg, #6c63ff, #4cafef);
+        border-radius: 50%;
+        transition: all 4s ease-in-out;
+        box-shadow: 0 8px 20px rgba(0, 0, 0, 0.2);
+    }
+    .circle.grow {
+        transform: scale(1.5);
+        background: linear-gradient(135deg, #28a745, #85e085);
+    }
+    .circle.shrink {
+        transform: scale(0.8);
+        background: linear-gradient(135deg, #dc3545, #f28b82);
+    }
+
+    /* Breathing Text */
+    #breath-text {
+        font-size: 1.8rem;
+        color: #333;
+        transition: opacity 0.5s ease-in-out;
+    }
+    #cycle-counter {
+        font-size: 1rem;
+    }
+</style>
+
+<script>
+    const text = document.getElementById('breath-text');
+    const circle = document.getElementById('circle');
+    const startBtn = document.getElementById('start-btn');
+    const cycleCounter = document.getElementById('cycle-counter');
+
+    let isRunning = false;
+
+    startBtn.addEventListener('click', () => {
+        if (isRunning) return; // avoid multiple starts
+        isRunning = true;
+        startBreathing();
+    });
+
+    function startBreathing() {
+        let cycle = 0;
+        breatheIn();
+
+        function breatheIn() {
+            text.innerText = "🌬️ Breathe In...";
+            circle.className = "circle grow";
+            setTimeout(breatheHold, 4000);
+        }
+
+        function breatheHold() {
+            text.innerText = "⏸️ Hold...";
+            circle.className = "circle";
+            setTimeout(breatheOut, 2000);
+        }
+
+        function breatheOut() {
+            text.innerText = "😌 Breathe Out...";
+            circle.className = "circle shrink";
+            setTimeout(() => {
+                cycle++;
+                cycleCounter.innerText = `Cycle: ${cycle} / 3`;
+                if (cycle < 3) {
+                    breatheIn();
+                } else {
+                    text.innerText = "✅ Done! Feeling calmer?";
+                    circle.className = "circle";
+                    isRunning = false;
+                }
+            }, 4000);
+        }
+    }
+</script>
+
+<%- include('../partials/footer') %>

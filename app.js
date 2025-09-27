@@ -45,8 +45,14 @@ app.use(session({
     store,
     secret: process.env.SESSION_SECRET || 'supersecret',
     resave: false,
-    saveUninitialized: false
+    saveUninitialized: false,
+    cookie: {
+        expires: Date.now() + 7 * 24 * 60 * 60 * 1000 ,
+         maxAge: 7 * 24 * 60 * 60 * 1000,
+        httpOnly: true,
+    }
 }));
+
 
 
 app.use(flash());
