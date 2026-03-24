@@ -78,12 +78,14 @@ const dashboardRoutes = require('./routes/dashboard');
 const sessionRoutes = require("./routes/sessionRoutes");
 const chatRoutes = require("./routes/chat");   // (new for chat)
 const problemRoutes = require('./routes/problemRoutes');
+const blogRoutes = require('./routes/blogRoutes');
 
 app.use('/', authRoutes);
 app.use('/', dashboardRoutes);
 app.use('/', sessionRoutes);
 app.use('/chat', chatRoutes);
 app.use('/', problemRoutes);
+app.use('/', blogRoutes);
 
 
 // Home route

@@ -1,0 +1,61 @@
+<%- include('../partials/header') %>
+
+<section class="blog-section py-5" style="background: linear-gradient(135deg, #E0EAFB, #F7F8FC);">
+  <div class="container">
+    
+    <div class="text-center mb-5" data-aos="fade-down">
+      <h1 class="fw-bold" style="color: #4C52FF;">🧠 Share Your Expertise</h1>
+      <p class="lead text-muted">Now you can <span class="text-primary fw-semibold">get rewarded</span> for writing impactful blogs that help students grow emotionally and mentally.</p>
+    </div>
+
+    <div class="card shadow-lg border-0 p-4 rounded-4" data-aos="fade-up" style="background: #fff;">
+      <div class="card-body">
+        <h4 class="text-center mb-4" style="color: #333;">✍️ Create a New Blog Post</h4>
+
+        <div class="wallet-card text-center mb-5" data-aos="fade-down"
+     style="background: linear-gradient(135deg, #4C52FF, #00C6A7); color: white; border-radius: 16px; padding: 25px;">
+  <h4 class="mb-2">Your Reward Wallet</h4>
+  <div class="d-flex justify-content-center align-items-center gap-4">
+    <div>
+      <h3><%= user.wallet.blogsWritten %></h3>
+      <p class="mb-0">Blogs Written</p>
+    </div>
+    <div>
+      <h3><%= user.wallet.rewardPoints %></h3>
+      <p class="mb-0">Reward Points</p>
+    </div>
+    <div>
+      <span class="badge bg-light text-dark fs-6"><%= user.wallet.badge %></span>
+      <p class="mb-0">Badge</p>
+    </div>
+  </div>
+</div>
+
+
+        <form action="/therapist/new-blog" method="POST">
+          
+          <div class="mb-4">
+            <label class="form-label fw-semibold">Title</label>
+            <input type="text" name="title" class="form-control form-control-lg" placeholder="Enter a catchy title..." required>
+          </div>
+
+          <div class="mb-4">
+            <label class="form-label fw-semibold">Content</label>
+            <textarea name="content" class="form-control" rows="7" placeholder="Write your thoughts here..." required></textarea>
+          </div>
+
+          <div class="alert alert-info text-center" role="alert">
+            💡 <strong>Pro Tip:</strong> High-quality blogs may get featured on the student wellness dashboard and earn recognition!
+          </div>
+
+          <button type="submit" class="btn w-100 py-3 fw-semibold" 
+                  style="background: linear-gradient(135deg, #4C52FF, #00C6A7); color: white; border-radius: 12px;">
+            Publish Blog 🚀
+          </button>
+        </form>
+      </div>
+    </div>
+  </div>
+</section>
+
+<%- include('../partials/footer') %>

@@ -1,44 +1,85 @@
 <%- include('../partials/header') %>
 
-<div class="container py-5">
-    <h2 class="text-center mb-4">Wellness Resources</h2>
-
-    <!-- Quick Breathing Exercise -->
-    <div class="card shadow-lg p-5 mb-5 text-center">
-        <h4 class="mb-3">🌬️ Quick Breathing Exercise</h4>
-        <p class="text-muted">Follow this short guided exercise to relax and refocus.</p>
-
-        <div class="breathing-box my-4">
-            <h2 id="breath-text" class="mb-3 fw-bold">Ready?</h2>
-            <div class="circle mx-auto mb-3 shadow" id="circle"></div>
-            <p id="cycle-counter" class="text-muted">Cycle: 0 / 3</p>
-            <button class="btn btn-gradient px-4 py-2 mt-3" id="start-btn">Start Exercise</button>
+<div class="wellness-page">
+    <!-- Hero Section -->
+    <div class="hero-section">
+        <div class="container">
+            <div class="hero-content">
+                <h1 class="hero-title">Your Wellness Journey</h1>
+                <p class="hero-subtitle">Take a moment to breathe, relax, and reconnect with yourself</p>
+            </div>
         </div>
     </div>
 
-    <!-- Example YouTube videos -->
-    <div class="row">
-        <div class="col-md-6 mb-4">
-            <div class="card shadow-sm border-0">
-                <div class="card-body">
-                    <h5 class="card-title">🧘 Mindfulness Meditation</h5>
-                    <div class="ratio ratio-16x9">
-                        <iframe src="https://www.youtube.com/embed/inpok4MKVLM" 
-                                title="Mindfulness Meditation" 
-                                allowfullscreen></iframe>
-                    </div>
+    <div class="container py-5">
+        <!-- Breathing Exercise Card -->
+        <div class="breathing-card">
+            <div class="breathing-header">
+                <div class="icon-wrapper">
+                    <span class="icon">🌬️</span>
                 </div>
+                <h3 class="breathing-title">Guided Breathing Exercise</h3>
+                <p class="breathing-subtitle">A simple 4-2-4 breathing pattern to calm your mind</p>
+            </div>
+
+            <div class="breathing-container">
+                <div class="breath-visual">
+                    <div class="circle" id="circle"></div>
+                    <div class="ripple ripple-1"></div>
+                    <div class="ripple ripple-2"></div>
+                </div>
+                
+                <h2 id="breath-text" class="breath-instruction">Ready to begin?</h2>
+                <p id="cycle-counter" class="cycle-text">0 of 3 cycles</p>
+                
+                <button class="btn-start" id="start-btn">
+                    <span class="btn-icon">▶</span>
+                    <span>Start Exercise</span>
+                </button>
             </div>
         </div>
 
-        <div class="col-md-6 mb-4">
-            <div class="card shadow-sm border-0">
-                <div class="card-body">
-                    <h5 class="card-title">☀️ Stress Relief Yoga</h5>
-                    <div class="ratio ratio-16x9">
-                        <iframe src="https://www.youtube.com/embed/v7AYKMP6rOE" 
-                                title="Yoga for Stress Relief" 
-                                allowfullscreen></iframe>
+        <!-- Video Resources -->
+        <div class="resources-section">
+            <div class="section-header">
+                <h3 class="section-title">Wellness Videos</h3>
+                <p class="section-subtitle">Curated content to support your mental wellbeing</p>
+            </div>
+
+            <div class="row g-4">
+                <div class="col-md-6">
+                    <div class="video-card">
+                        <div class="video-badge">
+                            <span>🧘</span>
+                            <span>Meditation</span>
+                        </div>
+                        <div class="ratio ratio-16x9">
+                            <iframe src="https://www.youtube.com/embed/inpok4MKVLM" 
+                                    title="Mindfulness Meditation" 
+                                    allowfullscreen></iframe>
+                        </div>
+                        <div class="video-info">
+                            <h5 class="video-title">Mindfulness Meditation</h5>
+                            <p class="video-description">Practice present-moment awareness and inner peace</p>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="col-md-6">
+                    <div class="video-card">
+                        <div class="video-badge">
+                            <span>☀️</span>
+                            <span>Yoga</span>
+                        </div>
+                        <div class="ratio ratio-16x9">
+                            <iframe src="https://www.youtube.com/embed/v7AYKMP6rOE" 
+                                    title="Yoga for Stress Relief" 
+                                    allowfullscreen></iframe>
+                        </div>
+                        <div class="video-info">
+                            <h5 class="video-title">Stress Relief Yoga</h5>
+                            <p class="video-description">Gentle stretches to release tension and anxiety</p>
+                        </div>
                     </div>
                 </div>
             </div>
@@ -47,46 +88,320 @@
 </div>
 
 <style>
-    /* Gradient Button */
-    .btn-gradient {
-        background: linear-gradient(45deg, #6c63ff, #4cafef);
+    .wellness-page {
+        background: linear-gradient(135deg, #f5f7fa 0%, #e8f0f7 100%);
+        min-height: 100vh;
+    }
+
+    /* Hero Section */
+    .hero-section {
+        background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+        padding: 80px 0 60px;
+        position: relative;
+        overflow: hidden;
+    }
+
+    .hero-section::before {
+        content: '';
+        position: absolute;
+        top: 0;
+        left: 0;
+        right: 0;
+        bottom: 0;
+        background: url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1440 320"><path fill="rgba(255,255,255,0.1)" d="M0,96L48,112C96,128,192,160,288,160C384,160,480,128,576,122.7C672,117,768,139,864,144C960,149,1056,139,1152,128C1248,117,1344,107,1392,101.3L1440,96L1440,320L1392,320C1344,320,1248,320,1152,320C1056,320,960,320,864,320C768,320,672,320,576,320C480,320,384,320,288,320C192,320,96,320,48,320L0,320Z"></path></svg>') no-repeat bottom;
+        background-size: cover;
+    }
+
+    .hero-content {
+        text-align: center;
+        position: relative;
+        z-index: 1;
+    }
+
+    .hero-title {
+        color: #fff;
+        font-size: 3rem;
+        font-weight: 700;
+        margin-bottom: 15px;
+        text-shadow: 0 2px 20px rgba(0,0,0,0.2);
+    }
+
+    .hero-subtitle {
+        color: rgba(255,255,255,0.95);
+        font-size: 1.3rem;
+        font-weight: 300;
+        max-width: 600px;
+        margin: 0 auto;
+    }
+
+    /* Breathing Card */
+    .breathing-card {
+        background: #fff;
+        border-radius: 24px;
+        padding: 50px 40px;
+        margin-bottom: 60px;
+        box-shadow: 0 20px 60px rgba(0,0,0,0.08);
+        position: relative;
+        overflow: hidden;
+    }
+
+    .breathing-card::before {
+        content: '';
+        position: absolute;
+        top: 0;
+        left: 0;
+        right: 0;
+        height: 6px;
+        background: linear-gradient(90deg, #667eea, #764ba2, #f093fb);
+    }
+
+    .breathing-header {
+        text-align: center;
+        margin-bottom: 50px;
+    }
+
+    .icon-wrapper {
+        width: 80px;
+        height: 80px;
+        background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+        border-radius: 20px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        margin: 0 auto 20px;
+        box-shadow: 0 10px 30px rgba(102, 126, 234, 0.3);
+    }
+
+    .icon-wrapper .icon {
+        font-size: 2.5rem;
+        filter: brightness(0) invert(1);
+    }
+
+    .breathing-title {
+        font-size: 2rem;
+        font-weight: 700;
+        color: #2d3748;
+        margin-bottom: 10px;
+    }
+
+    .breathing-subtitle {
+        font-size: 1.1rem;
+        color: #718096;
+        font-weight: 400;
+    }
+
+    /* Breathing Container */
+    .breathing-container {
+        text-align: center;
+        padding: 40px 0;
+    }
+
+    .breath-visual {
+        position: relative;
+        width: 200px;
+        height: 200px;
+        margin: 0 auto 40px;
+    }
+
+    .circle {
+        width: 200px;
+        height: 200px;
+        background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+        border-radius: 50%;
+        position: relative;
+        z-index: 2;
+        transition: all 4s cubic-bezier(0.4, 0, 0.2, 1);
+        box-shadow: 0 15px 40px rgba(102, 126, 234, 0.4);
+    }
+
+    .circle.grow {
+        transform: scale(1.4);
+        background: linear-gradient(135deg, #4fd1c5 0%, #38b2ac 100%);
+        box-shadow: 0 20px 60px rgba(79, 209, 197, 0.5);
+    }
+
+    .circle.shrink {
+        transform: scale(0.7);
+        background: linear-gradient(135deg, #f093fb 0%, #f5576c 100%);
+        box-shadow: 0 10px 30px rgba(240, 147, 251, 0.4);
+    }
+
+    .ripple {
+        position: absolute;
+        top: 0;
+        left: 0;
+        width: 200px;
+        height: 200px;
+        border: 2px solid rgba(102, 126, 234, 0.3);
+        border-radius: 50%;
+        opacity: 0;
+        z-index: 1;
+    }
+
+    .circle.grow ~ .ripple {
+        animation: rippleEffect 3s ease-out;
+    }
+
+    .ripple-2 {
+        animation-delay: 0.3s;
+    }
+
+    @keyframes rippleEffect {
+        0% {
+            transform: scale(1);
+            opacity: 0.6;
+        }
+        100% {
+            transform: scale(1.8);
+            opacity: 0;
+        }
+    }
+
+    .breath-instruction {
+        font-size: 2rem;
+        font-weight: 600;
+        color: #2d3748;
+        margin-bottom: 15px;
+        min-height: 60px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+    }
+
+    .cycle-text {
+        font-size: 1rem;
+        color: #a0aec0;
+        margin-bottom: 30px;
+        font-weight: 500;
+    }
+
+    /* Start Button */
+    .btn-start {
+        background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
         border: none;
         color: #fff;
+        padding: 16px 40px;
+        border-radius: 50px;
+        font-size: 1.1rem;
         font-weight: 600;
-        border-radius: 30px;
-        transition: 0.3s;
-    }
-    .btn-gradient:hover {
-        background: linear-gradient(45deg, #4cafef, #6c63ff);
-        transform: scale(1.05);
-    }
-
-    /* Breathing Circle */
-    .circle {
-        width: 160px;
-        height: 160px;
-        background: linear-gradient(135deg, #6c63ff, #4cafef);
-        border-radius: 50%;
-        transition: all 4s ease-in-out;
-        box-shadow: 0 8px 20px rgba(0, 0, 0, 0.2);
-    }
-    .circle.grow {
-        transform: scale(1.5);
-        background: linear-gradient(135deg, #28a745, #85e085);
-    }
-    .circle.shrink {
-        transform: scale(0.8);
-        background: linear-gradient(135deg, #dc3545, #f28b82);
+        cursor: pointer;
+        transition: all 0.3s ease;
+        display: inline-flex;
+        align-items: center;
+        gap: 10px;
+        box-shadow: 0 10px 30px rgba(102, 126, 234, 0.3);
     }
 
-    /* Breathing Text */
-    #breath-text {
-        font-size: 1.8rem;
-        color: #333;
-        transition: opacity 0.5s ease-in-out;
+    .btn-start:hover {
+        transform: translateY(-2px);
+        box-shadow: 0 15px 40px rgba(102, 126, 234, 0.4);
     }
-    #cycle-counter {
-        font-size: 1rem;
+
+    .btn-start:active {
+        transform: translateY(0);
+    }
+
+    .btn-icon {
+        font-size: 0.9rem;
+    }
+
+    /* Resources Section */
+    .resources-section {
+        margin-top: 60px;
+    }
+
+    .section-header {
+        text-align: center;
+        margin-bottom: 50px;
+    }
+
+    .section-title {
+        font-size: 2.2rem;
+        font-weight: 700;
+        color: #2d3748;
+        margin-bottom: 10px;
+    }
+
+    .section-subtitle {
+        font-size: 1.1rem;
+        color: #718096;
+    }
+
+    /* Video Cards */
+    .video-card {
+        background: #fff;
+        border-radius: 20px;
+        overflow: hidden;
+        box-shadow: 0 10px 30px rgba(0,0,0,0.08);
+        transition: all 0.3s ease;
+        position: relative;
+    }
+
+    .video-card:hover {
+        transform: translateY(-8px);
+        box-shadow: 0 20px 50px rgba(0,0,0,0.12);
+    }
+
+    .video-badge {
+        position: absolute;
+        top: 20px;
+        left: 20px;
+        background: rgba(255,255,255,0.95);
+        padding: 8px 16px;
+        border-radius: 50px;
+        display: flex;
+        align-items: center;
+        gap: 8px;
+        font-weight: 600;
+        color: #2d3748;
+        font-size: 0.9rem;
+        z-index: 10;
+        box-shadow: 0 4px 15px rgba(0,0,0,0.15);
+    }
+
+    .video-info {
+        padding: 25px;
+    }
+
+    .video-title {
+        font-size: 1.3rem;
+        font-weight: 700;
+        color: #2d3748;
+        margin-bottom: 8px;
+    }
+
+    .video-description {
+        color: #718096;
+        margin: 0;
+        font-size: 0.95rem;
+        line-height: 1.6;
+    }
+
+    /* Responsive */
+    @media (max-width: 768px) {
+        .hero-title {
+            font-size: 2rem;
+        }
+        
+        .hero-subtitle {
+            font-size: 1.1rem;
+        }
+
+        .breathing-card {
+            padding: 30px 20px;
+        }
+
+        .breathing-title {
+            font-size: 1.5rem;
+        }
+
+        .breath-instruction {
+            font-size: 1.5rem;
+        }
+
+        .section-title {
+            font-size: 1.8rem;
+        }
     }
 </style>
 
@@ -99,8 +414,10 @@
     let isRunning = false;
 
     startBtn.addEventListener('click', () => {
-        if (isRunning) return; // avoid multiple starts
+        if (isRunning) return;
         isRunning = true;
+        startBtn.disabled = true;
+        startBtn.style.opacity = '0.6';
         startBreathing();
     });
 
@@ -109,29 +426,34 @@
         breatheIn();
 
         function breatheIn() {
-            text.innerText = "🌬️ Breathe In...";
+            text.innerText = "Breathe In 🌬️";
             circle.className = "circle grow";
+            cycleCounter.innerText = `Cycle ${cycle + 1} of 3 • Inhale`;
             setTimeout(breatheHold, 4000);
         }
 
         function breatheHold() {
-            text.innerText = "⏸️ Hold...";
+            text.innerText = "Hold ⏸️";
             circle.className = "circle";
+            cycleCounter.innerText = `Cycle ${cycle + 1} of 3 • Hold`;
             setTimeout(breatheOut, 2000);
         }
 
         function breatheOut() {
-            text.innerText = "😌 Breathe Out...";
+            text.innerText = "Breathe Out 😌";
             circle.className = "circle shrink";
+            cycleCounter.innerText = `Cycle ${cycle + 1} of 3 • Exhale`;
             setTimeout(() => {
                 cycle++;
-                cycleCounter.innerText = `Cycle: ${cycle} / 3`;
                 if (cycle < 3) {
                     breatheIn();
                 } else {
-                    text.innerText = "✅ Done! Feeling calmer?";
+                    text.innerText = "Complete! ✨";
                     circle.className = "circle";
+                    cycleCounter.innerText = "Well done! Take a moment to notice how you feel.";
                     isRunning = false;
+                    startBtn.disabled = false;
+                    startBtn.style.opacity = '1';
                 }
             }, 4000);
         }

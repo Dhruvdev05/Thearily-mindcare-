@@ -1,51 +1,455 @@
 <%- include('../partials/header') %>
 
-<div class="container py-5">
-    <div class="text-center mb-5">
-        <h2 class="fw-bold">Corporate Wellness Solutions</h2>
-        <p class="lead text-muted">Boost your team’s productivity & wellbeing with MindCare</p>
-    </div>
+<style>
+    /* === CORPORATE PAGE — REFRESHED COLOURS & FEEL === */
+    :root{
+        --bg-1: #7dd3fc; /* sky */
+        --bg-2: #ffd7a6; /* warm peach */
+        --accent: #06b6d4; /* teal */
+        --accent-2: #fb7185; /* coral */
+        --muted: #6b7280;
+        --card-bg: rgba(255,255,255,0.98);
+        --glass: rgba(255,255,255,0.7);
+        --shadow: 0 10px 30px rgba(16,24,40,0.08);
+    }
 
-    <!-- Hero Metric -->
-    <div class="card shadow-lg p-4 text-center mb-5" style="border-left: 6px solid #6C63FF;">
-        <h3 class="fw-bold text-success">💡 Did you know?</h3>
-        <p class="mt-3 fs-5">
-            Every <strong>$1 invested</strong> in employee productivity & wellness
-            delivers an average <strong>$4 return</strong> in performance & reduced stress costs.
-        </p>
-    </div>
+    body { background: linear-gradient(180deg, #f7fbff 0%, #fffaf4 100%); }
 
-    <!-- Contact Section -->
-    <div class="row justify-content-center">
-        <div class="col-md-8">
-            <div class="card shadow-sm p-4">
-                <h4 class="mb-3 text-center">Let’s Partner for Your Team’s Growth</h4>
-                <p class="text-muted text-center">Fill out the form below and we’ll reach out.</p>
-                
-                <form>
-                    <div class="mb-3">
-                        <label class="form-label">Company Name</label>
-                        <input type="text" class="form-control" placeholder="Enter your company name">
-                    </div>
-                    <div class="mb-3">
-                        <label class="form-label">Contact Person</label>
-                        <input type="text" class="form-control" placeholder="Enter your name">
-                    </div>
-                    <div class="mb-3">
-                        <label class="form-label">Email</label>
-                        <input type="email" class="form-control" placeholder="Enter email address">
-                    </div>
-                    <div class="mb-3">
-                        <label class="form-label">Message</label>
-                        <textarea class="form-control" rows="4" placeholder="Tell us how we can help your team"></textarea>
-                    </div>
-                    <div class="text-center">
-                        <button class="btn btn-primary px-4">Submit</button>
-                    </div>
-                </form>
-            </div>
+    .corporate-hero {
+        background: linear-gradient(135deg, var(--bg-1) 0%, var(--bg-2) 45%, #fbcfe8 100%);
+        padding: 6rem 0 4rem;
+        position: relative;
+        overflow: hidden;
+        color: #083344;
+    }
+
+    .corporate-hero::before {
+        content: '';
+        position: absolute;
+        inset: 0;
+        background: radial-gradient(circle at 10% 20%, rgba(255,255,255,0.6), transparent 10%),
+                    radial-gradient(circle at 85% 80%, rgba(255,255,255,0.45), transparent 12%);
+        mix-blend-mode: overlay;
+        pointer-events: none;
+    }
+
+    .corporate-section { background: transparent; padding: 3rem 0 5rem; }
+
+    .hero-content { position: relative; z-index: 2; text-align: center; color: #04314d; }
+
+    .hero-title {
+        font-size: 3.2rem;
+        font-weight: 800;
+        margin-bottom: 1rem;
+        line-height: 1.15;
+        text-shadow: 0 6px 30px rgba(3,49,77,0.06);
+        letter-spacing: -0.5px;
+    }
+
+    .hero-subtitle {
+        font-size: 1.15rem;
+        font-weight: 500;
+        color: rgba(4,49,77,0.85);
+        max-width: 760px;
+        margin: 0 auto 2rem;
+    }
+
+    .impact-card {
+        background: var(--card-bg);
+        backdrop-filter: blur(8px) saturate(120%);
+        border-radius: 18px;
+        padding: 2.2rem;
+        box-shadow: var(--shadow);
+        border-left: 8px solid var(--accent-2);
+        margin-top: -70px;
+        position: relative;
+        z-index: 10;
+    }
+
+    .impact-number {
+        font-size: 2.8rem;
+        font-weight: 900;
+        background: linear-gradient(90deg, var(--accent), var(--accent-2));
+        -webkit-background-clip: text;
+        -webkit-text-fill-color: transparent;
+    }
+
+    .roi-calculator {
+        background: linear-gradient(180deg, rgba(255,255,255,0.9), rgba(255,255,255,0.95));
+        border-radius: 16px;
+        padding: 2.5rem;
+        box-shadow: 0 12px 40px rgba(8,49,68,0.06);
+        margin-top: 2rem;
+        border: 1px solid rgba(10,44,60,0.03);
+    }
+
+    .calc-input {
+        border: 1.5px solid rgba(11,40,51,0.06);
+        border-radius: 12px;
+        padding: 0.95rem 1.25rem;
+        font-size: 1rem;
+        transition: all 200ms ease;
+        background: white;
+    }
+
+    .calc-input:focus {
+        border-color: var(--accent);
+        box-shadow: 0 6px 24px rgba(6,182,212,0.12);
+        outline: none;
+    }
+
+    .calc-btn {
+        background: linear-gradient(90deg, var(--accent), #60a5fa);
+        border: none;
+        border-radius: 12px;
+        padding: 0.9rem 1.25rem;
+        font-weight: 700;
+        color: white;
+        transition: all 180ms ease;
+        box-shadow: 0 10px 28px rgba(6,182,212,0.15);
+    }
+
+    .calc-btn:hover { transform: translateY(-3px); box-shadow: 0 16px 44px rgba(6,182,212,0.18); }
+
+    .roi-result {
+        background: linear-gradient(90deg, rgba(255,255,255,0.95), rgba(255,255,255,0.9));
+        color: #04314d;
+        border-radius: 14px;
+        padding: 1.6rem;
+        margin-top: 1.5rem;
+        display: none;
+        animation: floatIn 0.45s ease;
+        border: 1px solid rgba(6,182,212,0.06);
+    }
+
+    @keyframes floatIn { from { opacity: 0; transform: translateY(-10px); } to { opacity: 1; transform: translateY(0); } }
+
+    .pricing-card {
+        background: var(--card-bg);
+        border-radius: 14px;
+        padding: 1.8rem;
+        box-shadow: 0 10px 30px rgba(9,30,45,0.05);
+        transition: all 220ms ease;
+        height: 100%;
+        border: 1px solid rgba(9,30,45,0.03);
+    }
+
+    .pricing-card:hover { transform: translateY(-8px); box-shadow: 0 22px 60px rgba(9,30,45,0.08); }
+
+    .pricing-card.featured {
+        background: linear-gradient(135deg, rgba(6,182,212,0.12), rgba(251,113,133,0.08));
+        color: #04314d;
+        transform: scale(1.03);
+        border: 1px solid rgba(6,182,212,0.09);
+    }
+
+    .pricing-header { text-align: center; margin-bottom: 1.4rem; padding-bottom: 1rem; border-bottom: 1px solid rgba(4,49,77,0.04); }
+
+    .price { font-size: 2.6rem; font-weight: 900; margin: 0.65rem 0; color: #042f3f; }
+
+    .price-label { font-size: 1rem; opacity: 0.85; }
+
+    .features-list { list-style: none; padding: 0; margin: 1.6rem 0; }
+    .features-list li { padding: 0.6rem 0; display: flex; align-items: center; gap: 12px; color: #083344; }
+    .features-list li i { color: var(--accent); font-size: 1.15rem; width: 28px; }
+    .pricing-card.featured .features-list li i { color: var(--accent-2); }
+
+    .pricing-btn {
+        width: 100%; padding: 0.9rem; border-radius: 12px; font-weight: 700;
+        border: 2px solid transparent; background: linear-gradient(90deg, var(--accent-2), var(--accent)); color: white;
+    }
+
+    .pricing-btn:hover { transform: translateY(-3px); opacity: 0.98; }
+
+    .impact-stats { background: var(--card-bg); border-radius: 14px; padding: 2.4rem; box-shadow: var(--shadow); margin: 2.5rem 0; }
+
+    .stat-item { text-align: center; padding: 1rem; }
+    .stat-value { font-size: 3rem; font-weight: 900; margin-bottom: 0.4rem; }
+    .stat-value.positive { background: linear-gradient(90deg, #16a34a, #86efac); -webkit-background-clip: text; -webkit-text-fill-color: transparent; }
+    .stat-value.primary { background: linear-gradient(90deg, #06b6d4, #60a5fa); -webkit-background-clip: text; -webkit-text-fill-color: transparent; }
+    .stat-value.warning { background: linear-gradient(90deg, #f97316, #ffd27a); -webkit-background-clip: text; -webkit-text-fill-color: transparent; }
+
+    .stat-label { font-size: 1.05rem; color: var(--muted); font-weight: 600; }
+
+    .contact-form-card { background: linear-gradient(180deg, rgba(255,255,255,0.95), rgba(255,255,255,0.98)); border-radius: 14px; padding: 2.4rem; box-shadow: var(--shadow); }
+
+    .form-control-custom { border: 1.5px solid rgba(9,30,45,0.04); border-radius: 10px; padding: 0.9rem; font-size: 0.98rem; transition: all 160ms ease; }
+    .form-control-custom:focus { border-color: var(--accent-2); box-shadow: 0 8px 26px rgba(251,113,133,0.08); outline: none; }
+
+    .submit-btn { background: linear-gradient(90deg, var(--accent-2), var(--accent)); border: none; border-radius: 12px; padding: 0.95rem 2.2rem; font-weight: 800; color: white; box-shadow: 0 12px 35px rgba(6,182,212,0.12); }
+    .submit-btn:hover { transform: translateY(-3px); }
+
+    .section-title { font-size: 2.2rem; font-weight: 800; margin-bottom: 0.6rem; color: #052a34; }
+    .section-subtitle { font-size: 1.05rem; color: var(--muted); margin-bottom: 2rem; }
+
+    @media (max-width: 768px) {
+        .hero-title { font-size: 2rem; }
+        .hero-subtitle { font-size: 1rem; }
+        .impact-number { font-size: 2rem; }
+        .stat-value { font-size: 2rem; }
+        .pricing-card.featured { transform: scale(1); }
+    }
+</style>
+
+<!-- Hero Section -->
+<section class="corporate-hero">
+    <div class="container">
+        <div class="hero-content">
+            <h1 class="hero-title">Corporate Wellness with Thearily 💼</h1>
+            <p class="hero-subtitle">Empower your employees. Elevate your company.<br>Because a healthy mind drives higher performance.</p>
         </div>
     </div>
-</div>
+</section>
+
+<!-- Main Content -->
+<section class="corporate-section">
+    <div class="container">
+        
+        <!-- Impact Card -->
+        <div class="impact-card">
+            <div class="row align-items-center">
+                <div class="col-md-8">
+                    <h3 class="fw-bold mb-3">💡 The Thearily Impact</h3>
+                    <p class="fs-5 text-muted mb-0">Every <strong style="color:var(--accent);">₹1 invested</strong> in employee wellbeing returns an average of <strong style="color:var(--accent-2);">₹4 in productivity gains</strong> and reduced absenteeism.</p>
+                </div>
+                <div class="col-md-4 text-center">
+                    <div class="impact-number">4X ROI</div>
+                    <small class="text-muted">Average Return</small>
+                </div>
+            </div>
+        </div>
+
+        <!-- ROI Calculator -->
+        <div class="roi-calculator">
+            <div class="text-center mb-4">
+                <h3 class="section-title">📈 ROI Calculator</h3>
+                <p class="section-subtitle">Estimate your organization's potential return on investment with Thearily</p>
+            </div>
+
+            <div class="row g-4">
+                <div class="col-md-4">
+                    <label class="form-label fw-semibold">Number of Employees</label>
+                    <input type="number" id="employees" class="form-control calc-input" placeholder="e.g., 100" min="1">
+                </div>
+                <div class="col-md-4">
+                    <label class="form-label fw-semibold">Select Plan</label>
+                    <select id="plan" class="form-select calc-input">
+                        <option value="299">Starter - ₹299/employee/month</option>
+                        <option value="499" selected>Growth - ₹499/employee/month</option>
+                        <option value="799">Enterprise - ₹799/employee/month</option>
+                    </select>
+                </div>
+                <div class="col-md-4">
+                    <label class="form-label fw-semibold">&nbsp;</label>
+                    <button id="calc-btn" class="btn calc-btn w-100">Calculate ROI</button>
+                </div>
+            </div>
+
+            <div id="roi-result" class="roi-result">
+                <div class="row text-center">
+                    <div class="col-md-4 mb-3">
+                        <h4>Annual Investment</h4>
+                        <h2 class="fw-bold" id="total-cost">-</h2>
+                    </div>
+                    <div class="col-md-4 mb-3">
+                        <h4>Estimated Return</h4>
+                        <h2 class="fw-bold" id="total-return">-</h2>
+                    </div>
+                    <div class="col-md-4 mb-3">
+                        <h4>ROI Multiple</h4>
+                        <h2 class="fw-bold" id="roi-multiple">-</h2>
+                    </div>
+                </div>
+                <p class="text-center mt-3 mb-0 fs-6"><i class="fas fa-info-circle me-2"></i>Based on average productivity gains of 15% and reduced absenteeism</p>
+            </div>
+        </div>
+
+        <!-- Pricing Section -->
+        <div class="text-center mt-5 mb-4">
+            <h2 class="section-title">Our Corporate Plans</h2>
+            <p class="section-subtitle">Flexible, transparent, and built for impact</p>
+        </div>
+
+        <div class="row g-4 mb-5">
+            <!-- Starter Plan -->
+            <div class="col-md-4">
+                <div class="pricing-card">
+                    <div class="pricing-header">
+                        <h4 class="fw-bold">Starter</h4>
+                        <div class="price">₹299</div>
+                        <div class="price-label">per employee/month</div>
+                    </div>
+                    <ul class="features-list">
+                        <li><i class="fas fa-check-circle"></i> AI Chatbot Support</li>
+                        <li><i class="fas fa-check-circle"></i> Self-Help Resources</li>
+                        <li><i class="fas fa-check-circle"></i> 2 Therapy Sessions/month</li>
+                        <li><i class="fas fa-check-circle"></i> Monthly Wellbeing Reports</li>
+                        <li><i class="fas fa-check-circle"></i> Email Support</li>
+                    </ul>
+                    <button class="pricing-btn">Get Started</button>
+                </div>
+            </div>
+
+            <!-- Growth Plan (Featured) -->
+            <div class="col-md-4">
+                <div class="pricing-card featured">
+                    <div class="badge bg-warning text-dark mb-3">Most Popular</div>
+                    <div class="pricing-header">
+                        <h4 class="fw-bold">Growth</h4>
+                        <div class="price">₹499</div>
+                        <div class="price-label">per employee/month</div>
+                    </div>
+                    <ul class="features-list">
+                        <li><i class="fas fa-check-circle"></i> Everything in Starter</li>
+                        <li><i class="fas fa-check-circle"></i> AI Insights & Analytics</li>
+                        <li><i class="fas fa-check-circle"></i> Monthly Wellness Webinars</li>
+                        <li><i class="fas fa-check-circle"></i> 24/7 Therapist Access</li>
+                        <li><i class="fas fa-check-circle"></i> Corporate Dashboard</li>
+                        <li><i class="fas fa-check-circle"></i> Priority Support</li>
+                    </ul>
+                    <button class="pricing-btn">Best Value</button>
+                </div>
+            </div>
+
+            <!-- Enterprise Plan -->
+            <div class="col-md-4">
+                <div class="pricing-card">
+                    <div class="pricing-header">
+                        <h4 class="fw-bold">Enterprise</h4>
+                        <div class="price">₹799</div>
+                        <div class="price-label">per employee/month</div>
+                    </div>
+                    <ul class="features-list">
+                        <li><i class="fas fa-check-circle"></i> Everything in Growth</li>
+                        <li><i class="fas fa-check-circle"></i> Custom Workshops</li>
+                        <li><i class="fas fa-check-circle"></i> Dedicated Account Manager</li>
+                        <li><i class="fas fa-check-circle"></i> Advanced Analytics</li>
+                        <li><i class="fas fa-check-circle"></i> On-site Sessions</li>
+                        <li><i class="fas fa-check-circle"></i> White-label Options</li>
+                    </ul>
+                    <button class="pricing-btn">Schedule Demo</button>
+                </div>
+            </div>
+        </div>
+
+        <!-- Impact Stats -->
+        <div class="impact-stats">
+            <h4 class="text-center fw-bold mb-4">🌱 Proven Corporate Impact</h4>
+            <div class="row">
+                <div class="col-md-4">
+                    <div class="stat-item">
+                        <div class="stat-value positive">+15%</div>
+                        <div class="stat-label">Employee Productivity</div>
+                    </div>
+                </div>
+                <div class="col-md-4">
+                    <div class="stat-item">
+                        <div class="stat-value primary">-30%</div>
+                        <div class="stat-label">Stress Levels</div>
+                    </div>
+                </div>
+                <div class="col-md-4">
+                    <div class="stat-item">
+                        <div class="stat-value warning">-20%</div>
+                        <div class="stat-label">Absenteeism</div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Contact Form -->
+        <div class="contact-form-card">
+            <h4 class="text-center mb-2 fw-bold" style="color:var(--accent);">Let's Partner for Your Team's Growth 🚀</h4>
+            <p class="text-center text-muted mb-4">Fill out the form below and we'll reach out within 24 hours</p>
+            
+            <form id="contact-form">
+                <div class="row g-3">
+                    <div class="col-md-6">
+                        <label class="form-label fw-semibold">Company Name *</label>
+                        <input type="text" class="form-control form-control-custom" placeholder="Your Company Name" required>
+                    </div>
+                    <div class="col-md-6">
+                        <label class="form-label fw-semibold">Contact Person *</label>
+                        <input type="text" class="form-control form-control-custom" placeholder="Your Full Name" required>
+                    </div>
+                    <div class="col-md-6">
+                        <label class="form-label fw-semibold">Email Address *</label>
+                        <input type="email" class="form-control form-control-custom" placeholder="email@company.com" required>
+                    </div>
+                    <div class="col-md-6">
+                        <label class="form-label fw-semibold">Number of Employees *</label>
+                        <input type="number" class="form-control form-control-custom" placeholder="e.g., 100" min="1" required>
+                    </div>
+                    <div class="col-12">
+                        <label class="form-label fw-semibold">How can we help your team?</label>
+                        <textarea class="form-control form-control-custom" rows="4" placeholder="Tell us about your corporate wellness goals and any specific challenges you're facing..."></textarea>
+                    </div>
+                </div>
+                <div class="text-center mt-4">
+                    <button type="submit" class="submit-btn"><i class="fas fa-paper-plane me-2"></i>Submit Inquiry</button>
+                </div>
+            </form>
+        </div>
+
+    </div>
+</section>
+
+<script>
+// ROI Calculator Logic (unchanged, small tweaks for formatting)
+document.getElementById('calc-btn').addEventListener('click', function() {
+    const employees = parseInt(document.getElementById('employees').value);
+    const planCost = parseInt(document.getElementById('plan').value);
+    if (!employees || employees <= 0) {
+        alert('⚠️ Please enter a valid number of employees!');
+        return;
+    }
+    const monthlyInvestment = employees * planCost;
+    const annualInvestment = monthlyInvestment * 12;
+
+    const avgSalaryPerEmployee = 50000; // Average monthly salary
+    const productivityGain = 0.15; // 15% productivity increase
+    const absenteeismReduction = 0.20; // 20% reduction in absenteeism
+
+    const productivityReturn = employees * avgSalaryPerEmployee * productivityGain * 12;
+    const baselineAbsenteeism = 0.05;
+    const absenteeismCostPerDay = avgSalaryPerEmployee / 22;
+    const absenteeismSavings = employees * baselineAbsenteeism * absenteeismReduction * 250 * absenteeismCostPerDay;
+
+    const totalReturn = productivityReturn + absenteeismSavings;
+    const roiMultiple = (totalReturn / annualInvestment).toFixed(1);
+
+    const resultDiv = document.getElementById('roi-result');
+    document.getElementById('total-cost').textContent = `₹${annualInvestment.toLocaleString('en-IN')}`;
+    document.getElementById('total-return').textContent = `₹${Math.round(totalReturn).toLocaleString('en-IN')}`;
+    document.getElementById('roi-multiple').textContent = `${roiMultiple}x`;
+
+    resultDiv.style.display = 'block';
+    resultDiv.scrollIntoView({ behavior: 'smooth', block: 'nearest' });
+});
+
+// Contact Form Handling
+document.getElementById('contact-form').addEventListener('submit', function(e) {
+    e.preventDefault();
+    alert('✅ Thank you for your inquiry! Our team will reach out within 24 hours.');
+    this.reset();
+});
+
+// Add animation on scroll
+const observerOptions = { threshold: 0.12, rootMargin: '0px 0px -60px 0px' };
+const observer = new IntersectionObserver((entries) => {
+    entries.forEach(entry => {
+        if (entry.isIntersecting) {
+            entry.target.style.opacity = '0';
+            entry.target.style.transform = 'translateY(18px)';
+            entry.target.style.transition = 'all 0.55s cubic-bezier(.2,.9,.2,1)';
+            setTimeout(() => { entry.target.style.opacity = '1'; entry.target.style.transform = 'translateY(0)'; }, 90);
+        }
+    });
+}, observerOptions);
+
+document.querySelectorAll('.pricing-card, .impact-stats, .contact-form-card, .impact-card, .roi-calculator').forEach(el => {
+    observer.observe(el);
+});
+</script>
 
 <%- include('../partials/footer') %>

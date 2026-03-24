@@ -1,0 +1,61 @@
+<%- include('../partials/header') %>
+
+<% if (success) { %>
+  <div class="alert alert-success text-center"><%= success %></div>
+<% } %>
+<% if (error) { %>
+  <div class="alert alert-danger text-center"><%= error %></div>
+<% } %>
+
+
+<section class="blogs-section py-5" style="background: #F9FBFF;">
+  <div class="container">
+    <div class="text-center mb-5" data-aos="fade-down">
+      <h1 class="fw-bold" style="color: #4C52FF;">🌿 Knowledge Hub</h1>
+      <p class="text-muted fs-5">Explore blogs by our certified therapists and wellness experts</p>
+    </div>
+
+    <% if (user && user.role === 'therapist') { %>
+      <div class="text-end mb-4">
+        <a href="/therapist/new-blog" 
+           class="btn btn-lg text-white fw-semibold" 
+           style="background: linear-gradient(135deg, #4C52FF, #00C6A7); border-radius: 12px;">
+          + Write a Blog
+        </a>
+      </div>
+    <% } %>
+
+    <div class="row g-4">
+      <% if (blogs.length > 0) { %>
+        <% blogs.forEach(blog => { %>
+          <div class="col-md-6 col-lg-4" data-aos="fade-up" data-aos-delay="100">
+            <div class="card blog-card shadow-sm border-0 h-100" style="border-radius: 16px; transition: transform 0.3s;">
+              <div class="card-body p-4">
+                <h5 class="fw-bold mb-2" style="color: #2C2E43;"><%= blog.title %></h5>
+                <p class="text-muted small mb-3">By <strong><%= blog.author.username %></strong> • <%= blog.createdAt.toDateString() %></p>
+                <p class="text-secondary mb-4"><%= blog.content.substring(0, 120) %>...</p>
+                <a href="#" class="btn btn-outline-primary btn-sm rounded-pill px-3">Read More</a>
+              </div>
+            </div>
+          </div>
+        <% }) %>
+      <% } else { %>
+        <div class="text-center text-muted fs-5">
+          <p>No blogs yet. Be the first to share your insights!</p>
+          <% if (user && user.role === 'therapist') { %>
+            <a href="/therapist/new-blog" class="btn btn-primary">Write Now</a>
+          <% } %>
+        </div>
+      <% } %>
+    </div>
+  </div>
+</section>
+
+<style>
+.blog-card:hover {
+  transform: translateY(-5px);
+  box-shadow: 0px 8px 20px rgba(0,0,0,0.1);
+}
+</style>
+
+<%- include('../partials/footer') %>
